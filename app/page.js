@@ -20,8 +20,8 @@ return (
 style={{
 display: "flex",
 flexDirection: "column",
-alignItems: "center",
 justifyContent: "center",
+alignItems: "center",
 height: "100vh",
 gap: "20px"
 }}
