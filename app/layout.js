@@ -1,7 +1,7 @@
-app/
-├── layout.js
-├── page.js
-│
-└── api/
-    └── random/
-        └── route.js
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>{children}</body>
+    </html>
+  );
+}
