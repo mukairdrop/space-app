@@ -3,13 +3,13 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [data, setData] = useState("");
+  const [planet, setPlanet] = useState(null);
 
-  const getRandom = async () => {
+  const explorePlanet = async () => {
     const res = await fetch("/api/random");
-    const json = await res.json();
+    const data = await res.json();
 
-    setData(JSON.stringify(json));
+    setPlanet(data.planet);
   };
 
   return (
@@ -20,16 +20,39 @@ export default function Home() {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        gap: "20px"
+        gap: "20px",
+        background: "black",
+        color: "white",
+        fontFamily: "Arial"
       }}
     >
-      <h1>SpaceComputer Demo</h1>
+      <h1>🚀 Space Explorer</h1>
 
-      <button onClick={getRandom}>
-        Generate Random
+      <button
+        onClick={explorePlanet}
+        style={{
+          padding: "12px 20px",
+          fontSize: "18px",
+          cursor: "pointer"
+        }}
+      >
+        Explore Planet
       </button>
 
-      <div>{data}</div>
+      {planet && (
+        <div
+          style={{
+            border: "1px solid white",
+            padding: "20px",
+            borderRadius: "10px",
+            textAlign: "center"
+          }}
+        >
+          <h2>{planet.name}</h2>
+          <p>Rarity: {planet.rarity}</p>
+          <p>Color: {planet.color}</p>
+        </div>
+      )}
     </main>
   );
 }
