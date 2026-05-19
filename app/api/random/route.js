@@ -9,12 +9,11 @@ export async function GET() {
       },
     });
 
-    const methods = Object.getOwnPropertyNames(
-      Object.getPrototypeOf(sdk.ctrngService)
-    );
+    const result = await sdk.ctrngService.random();
 
     return Response.json({
-      methods
+      success: true,
+      data: result
     });
 
   } catch (err) {
