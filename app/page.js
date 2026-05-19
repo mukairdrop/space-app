@@ -11,23 +11,7 @@ const json = await res.json();
 
 ```
 setData(JSON.stringify(json));
-```
 
-};
-
-return (
-<main
-style={{
-display: "flex",
-flexDirection: "column",
-justifyContent: "center",
-alignItems: "center",
-height: "100vh",
-gap: "20px"
-}}
-> <h1>SpaceComputer Demo</h1>
-
-```
   <button onClick={getRandom}>
     Generate Random
   </button>
