@@ -4,12 +4,17 @@ import { useState } from "react";
 
 export default function Home() {
   const [planet, setPlanet] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const explorePlanet = async () => {
+    setLoading(true);
+
     const res = await fetch("/api/random");
     const data = await res.json();
 
     setPlanet(data.planet);
+
+    setLoading(false);
   };
 
   return (
@@ -33,10 +38,11 @@ export default function Home() {
         style={{
           padding: "12px 20px",
           fontSize: "18px",
-          cursor: "pointer"
+          cursor: "pointer",
+          borderRadius: "8px"
         }}
       >
-        Explore Planet
+        {loading ? "Scanning Galaxy..." : "Explore Planet"}
       </button>
 
       {planet && (
@@ -45,12 +51,19 @@ export default function Home() {
             border: "1px solid white",
             padding: "20px",
             borderRadius: "10px",
-            textAlign: "center"
+            textAlign: "center",
+            minWidth: "250px"
           }}
         >
           <h2>{planet.name}</h2>
-          <p>Rarity: {planet.rarity}</p>
-          <p>Color: {planet.color}</p>
+
+          <p>
+            <strong>Rarity:</strong> {planet.rarity}
+          </p>
+
+          <p>
+            <strong>Color:</strong> {planet.color}
+          </p>
         </div>
       )}
     </main>
