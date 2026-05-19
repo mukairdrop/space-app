@@ -9,10 +9,12 @@ export async function GET() {
       },
     });
 
+    const methods = Object.getOwnPropertyNames(
+      Object.getPrototypeOf(sdk.ctrngService)
+    );
+
     return Response.json({
-      sdkKeys: Object.keys(sdk),
-      ctrngType: typeof sdk.ctrng,
-      ctrngValue: sdk.ctrng
+      methods
     });
 
   } catch (err) {
